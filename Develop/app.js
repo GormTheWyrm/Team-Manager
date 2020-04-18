@@ -27,7 +27,7 @@ function addEmployee() {  //expect to change name
             type: "list",
             message: "Type of employee",
             name: "profession",
-            choices: ["Engineer", "Manager", "Intern", "Employee (misc)", "Mascot"]
+            choices: ["Engineer", "Manager", "Intern", "Employee", "Mascot"]
         },
         {
             type: "input",
@@ -63,26 +63,43 @@ function addEmployee() {  //expect to change name
         //I could make this a while loop but this might be better?
         //need to make this create an object... oh shit, not on this scope!?
             //add object to an array!
-        console.log(res);
+        
         //define a function to add employee to array?
 
         if (res.profession === "Employee"){
             let xxx = new Employee (res.name, res.id, res.email);
             //how to make var name = res.name?
             myEmployees.push(xxx);
+            console.log("adding employee");
 
         } else if (res.profession === "Engineer"){
+            let xxx = new Engineer (res.name, res.id, res.email);
+            //how to make var name = res.name?
+            myEmployees.push(xxx);
+            console.log("adding employee");
 
         } else if (res.profession === "Manager"){
-
+            let xxx = new Manager (res.name, res.id, res.email);
+            //how to make var name = res.name?
+            myEmployees.push(xxx);
+            console.log("adding employee");
         } else if (res.profession === "Intern"){
-
+            let xxx = new Intern (res.name, res.id, res.email);
+            //how to make var name = res.name?
+            myEmployees.push(xxx);
+            console.log("adding employee");
         } else if (res.profession === "Mascot"){
-
-        }
+            // let xxx = new Employee (res.name, res.id, res.email);
+            //how to make var name = res.name?
+            // myEmployees.push(xxx);
+            // console.log("adding employee");
+        } else {console.log("error...You somehow managed to select an option that does not existS")}
         if (res.morePeople === true){
             addEmployee();
         }
+    //
+        console.log(myEmployees);
+
     }
     );
 }
@@ -125,5 +142,3 @@ addEmployee();
 //BUGS and future features
 //if time, add a mascot option
 //how to change array so that employees are added as their name...S
-//how to write different question depending on employee type?
-//...."when" in documentation...  when(function, boolean)
