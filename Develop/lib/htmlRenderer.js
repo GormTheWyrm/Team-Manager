@@ -3,6 +3,8 @@ const fs = require("fs");
 
 const templatesDir = path.resolve(__dirname, "../templates");
 
+
+//pass in an array of employees and passes out a chunk of html to display them!
 const render = employees => {
   const html = [];
 
@@ -18,8 +20,10 @@ const render = employees => {
     .filter(employee => employee.getRole() === "Intern")
     .map(intern => renderIntern(intern))
   );
-
+  //I must add a renderMascot...
+    console.log(html);
   return renderMain(html.join(""));
+  //this returns html for all employees in one chunk!
 
 };
 

@@ -1,19 +1,21 @@
-const Employee = require("./lib/Employee");
-//is above needed?
+const inquirer = require("inquirer");
+const path = require("path");
+const fs = require("fs");
 
+const Employee = require("./lib/Employee"); 
 const Manager = require("./lib/Manager");
 const Engineer = require("./lib/Engineer");
 const Intern = require("./lib/Intern");
 const Mascot = require("./lib/Mascot");
 
-const inquirer = require("inquirer");
-const path = require("path");
-const fs = require("fs");
+const render = require("./lib/htmlRenderer");
+
+
 
 const OUTPUT_DIR = path.resolve(__dirname, "output");
 const outputPath = path.join(OUTPUT_DIR, "team.html");
 
-const render = require("./lib/htmlRenderer");
+
 
 let myEmployees = [];
 //employee ids?
@@ -28,7 +30,9 @@ function addEmployee() {  //expect to change name
             type: "list",
             message: "Type of employee",
             name: "profession",
-            choices: ["Manager", "Engineer", "Intern", "Employee", "Mascot"]
+            choices: ["Manager", "Engineer", "Intern", "Employee", 
+            // "Mascot"
+        ]
             //mascot not implemented yet
         },
         {
@@ -58,8 +62,15 @@ function addEmployee() {  //expect to change name
             message: "GitHub Username:",
             name: "github",
             when: function(ans){if(ans.profession === "Engineer"){return true}}
-            //do a grad year too!
+            
         },
+        // {
+        //     type: "input",
+        //     message: "What type of mascot?",
+        //     name: "species",
+        //     when: function(ans){if(ans.profession === "Mascot"){return true}}
+            
+        // },
         {
             type: "input",
             message: "Office Number:",
@@ -67,6 +78,7 @@ function addEmployee() {  //expect to change name
             when: function(ans){if(ans.profession === "Manager"){return true}}
             //do a grad year too!
         },
+
         {
             type: "confirm",
             message: "Add another Employee?",
@@ -102,18 +114,24 @@ function addEmployee() {  //expect to change name
             //how to make var name = res.name?
             myEmployees.push(xxx);
             console.log("adding employee");
-        } else if (res.profession === "Mascot"){
-            // let xxx = new Employee (res.name, res.id, res.email);
-            let xxx = new Mascot(res.name, res.id, res.email, res.species);
-            //how to make var name = res.name?
-            myEmployees.push(xxx);
-            // console.log("adding employee");
-        } else {console.log("error...You somehow managed to select an option that does not exist")}
+        } 
+        // else if (res.profession === "Mascot"){
+        //     // let xxx = new Employee (res.name, res.id, res.email);
+        //     let xxx = new Mascot(res.name, res.id, res.email, res.species);
+        //     //how to make var name = res.name?
+        //     myEmployees.push(xxx);
+        //     // console.log("adding employee");
+        // } 
+        else {console.log("error...You somehow managed to select an option that does not exist")}
         if (res.morePeople === true){
             addEmployee();
+        }else{
+            const myHTML = render(myEmployees);    //returns html...
+            //now write myHTML into a new file called ...team
+            //writeHTML(myHTML);
         }
     //
-        console.log(myEmployees);
+        // console.log(myEmployees);
         //this console log hinders usability... hides question when restarts
 
     }
@@ -121,9 +139,17 @@ function addEmployee() {  //expect to change name
 }
 
 
+function writeHTML(inputVar){
+    //writes to a file...
+
+}
+function displayHTML(x){
+    //opens file?
+}
+
 //  APP CALLS MAIN FUNCTIONS
-addEmployee();
-//render... if render needs to be within the then function... may need to fudge that function...
+addEmployee();  //may need to change this name to init() ... but first make it work!
+//render is called within employee... returns
 
 
 
