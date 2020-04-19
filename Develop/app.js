@@ -4,6 +4,7 @@ const Employee = require("./lib/Employee");
 const Manager = require("./lib/Manager");
 const Engineer = require("./lib/Engineer");
 const Intern = require("./lib/Intern");
+const Mascot = require("./lib/Mascot");
 
 const inquirer = require("inquirer");
 const path = require("path");
@@ -27,7 +28,8 @@ function addEmployee() {  //expect to change name
             type: "list",
             message: "Type of employee",
             name: "profession",
-            choices: ["Engineer", "Manager", "Intern", "Employee", "Mascot"]
+            choices: ["Manager", "Engineer", "Intern", "Employee", "Mascot"]
+            //mascot not implemented yet
         },
         {
             type: "input",
@@ -52,6 +54,20 @@ function addEmployee() {  //expect to change name
             //do a grad year too!
         },
         {
+            type: "input",
+            message: "GitHub Username:",
+            name: "github",
+            when: function(ans){if(ans.profession === "Engineer"){return true}}
+            //do a grad year too!
+        },
+        {
+            type: "input",
+            message: "Office Number:",
+            name: "OfficeNumber",
+            when: function(ans){if(ans.profession === "Manager"){return true}}
+            //do a grad year too!
+        },
+        {
             type: "confirm",
             message: "Add another Employee?",
             name: "morePeople",
@@ -60,9 +76,7 @@ function addEmployee() {  //expect to change name
 
     ]).then(function(res){
         //make function... if morePeople === true; call function that goes through prompt...
-        //I could make this a while loop but this might be better?
-        //need to make this create an object... oh shit, not on this scope!?
-            //add object to an array!
+        
         
         //define a function to add employee to array?
 
@@ -73,32 +87,34 @@ function addEmployee() {  //expect to change name
             console.log("adding employee");
 
         } else if (res.profession === "Engineer"){
-            let xxx = new Engineer (res.name, res.id, res.email);
+            let xxx = new Engineer (res.name, res.id, res.email, res.github);
             //how to make var name = res.name?
             myEmployees.push(xxx);
             console.log("adding employee");
 
         } else if (res.profession === "Manager"){
-            let xxx = new Manager (res.name, res.id, res.email);
+            let xxx = new Manager (res.name, res.id, res.email, res.OfficeNumber);
             //how to make var name = res.name?
             myEmployees.push(xxx);
             console.log("adding employee");
         } else if (res.profession === "Intern"){
-            let xxx = new Intern (res.name, res.id, res.email);
+            let xxx = new Intern (res.name, res.id, res.email, res.school);
             //how to make var name = res.name?
             myEmployees.push(xxx);
             console.log("adding employee");
         } else if (res.profession === "Mascot"){
             // let xxx = new Employee (res.name, res.id, res.email);
+            let xxx = new Mascot(res.name, res.id, res.email, res.species);
             //how to make var name = res.name?
-            // myEmployees.push(xxx);
+            myEmployees.push(xxx);
             // console.log("adding employee");
-        } else {console.log("error...You somehow managed to select an option that does not existS")}
+        } else {console.log("error...You somehow managed to select an option that does not exist")}
         if (res.morePeople === true){
             addEmployee();
         }
     //
         console.log(myEmployees);
+        //this console log hinders usability... hides question when restarts
 
     }
     );
@@ -142,3 +158,4 @@ addEmployee();
 //BUGS and future features
 //if time, add a mascot option
 //how to change array so that employees are added as their name...S
+//what do they want from github, github user and etc? -engineer
