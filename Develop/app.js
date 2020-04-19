@@ -168,3 +168,7 @@ addEmployee();  //may need to change this name to init() ... but first make it w
 // I've seen a single comma appear on the output file occasionally. Both times in front of an engineers div.
 //1st it was in front of 2nd div, then in front of 3rd div. 
 //more testing required to locate bug
+
+//needs a gif
+//needs validation
+//mascot not yet implemented.
