@@ -128,7 +128,8 @@ function addEmployee() {  //expect to change name
         }else{
             const myHTML = render(myEmployees);    //returns html...
             //now write myHTML into a new file called ...team
-            //writeHTML(myHTML);
+            writeHTML(myHTML);
+            // displayHTML() consider opening file if possible...
         }
     //
         // console.log(myEmployees);
@@ -141,7 +142,12 @@ function addEmployee() {  //expect to change name
 
 function writeHTML(inputVar){
     //writes to a file...
-
+    fs.writeFile("./output/team.html", inputVar, function(err) {
+        if (err) {
+          return console.log(err);
+        }
+        console.log("File Created!");
+      });     
 }
 function displayHTML(x){
     //opens file?
@@ -184,3 +190,4 @@ addEmployee();  //may need to change this name to init() ... but first make it w
 //BUGS and future features
 //how to change array so that employees are added as their name...S
 //engineer failing test... even though it seems to work fine in my program...
+//use readme generator to create a readme for this!

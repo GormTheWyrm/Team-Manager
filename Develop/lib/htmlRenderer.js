@@ -21,7 +21,6 @@ const render = employees => {
     .map(intern => renderIntern(intern))
   );
   //I must add a renderMascot...
-    console.log(html);
   return renderMain(html.join(""));
   //this returns html for all employees in one chunk!
 
