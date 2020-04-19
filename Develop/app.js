@@ -156,6 +156,5 @@ addEmployee();
 // for the provided `render` function to work! ```
 
 //BUGS and future features
-//if time, add a mascot option
 //how to change array so that employees are added as their name...S
-//what do they want from github, github user and etc? -engineer
+//engineer failing test... even though it seems to work fine in my program...
