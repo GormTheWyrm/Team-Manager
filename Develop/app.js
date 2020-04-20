@@ -31,7 +31,7 @@ function addEmployee() {  //expect to change name
             message: "Type of employee",
             name: "profession",
             choices: ["Manager", "Engineer", "Intern", "Employee", 
-            // "Mascot"
+            "Mascot"
         ]
             //mascot not implemented yet
         },
@@ -64,13 +64,13 @@ function addEmployee() {  //expect to change name
             when: function(ans){if(ans.profession === "Engineer"){return true}}
             
         },
-        // {
-        //     type: "input",
-        //     message: "What type of mascot?",
-        //     name: "species",
-        //     when: function(ans){if(ans.profession === "Mascot"){return true}}
+        {
+            type: "input",
+            message: "What type of mascot?",
+            name: "species",
+            when: function(ans){if(ans.profession === "Mascot"){return true}}
             
-        // },
+        },
         {
             type: "input",
             message: "Office Number:",
@@ -115,13 +115,13 @@ function addEmployee() {  //expect to change name
             myEmployees.push(xxx);
             console.log("adding employee");
         } 
-        // else if (res.profession === "Mascot"){
-        //     // let xxx = new Employee (res.name, res.id, res.email);
-        //     let xxx = new Mascot(res.name, res.id, res.email, res.species);
-        //     //how to make var name = res.name?
-        //     myEmployees.push(xxx);
-        //     // console.log("adding employee");
-        // } 
+        else if (res.profession === "Mascot"){
+            // let xxx = new Employee (res.name, res.id, res.email);
+            let xxx = new Mascot(res.name, res.id, res.email, res.species);
+            //how to make var name = res.name?
+            myEmployees.push(xxx);
+            // console.log("adding employee");
+        } 
         else {console.log("error...You somehow managed to select an option that does not exist")}
         if (res.morePeople === true){
             addEmployee();

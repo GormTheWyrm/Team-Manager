@@ -20,6 +20,14 @@ const render = employees => {
     .filter(employee => employee.getRole() === "Intern")
     .map(intern => renderIntern(intern))
   );
+  html.push(employees
+    .filter(employee => employee.getRole() === "Mascot")
+    .map(mascot => renderMascot(mascot))
+  );
+  html.push(employees
+    .filter(employee => employee.getRole() === "Employee")
+    .map(xxx => renderBasic(xxx))
+  );
   //I must add a renderMascot...
   return renderMain(html.join(""));
   //this returns html for all employees in one chunk!
@@ -53,6 +61,24 @@ const renderIntern = intern => {
   template = replacePlaceholders(template, "email", intern.getEmail());
   template = replacePlaceholders(template, "id", intern.getId());
   template = replacePlaceholders(template, "school", intern.getSchool());
+  return template;
+};
+
+const renderMascot = mascot => {
+  let template = fs.readFileSync(path.resolve(templatesDir, "mascot.html"), "utf8");
+  template = replacePlaceholders(template, "name", mascot.getName());
+  template = replacePlaceholders(template, "role", mascot.getRole());
+  template = replacePlaceholders(template, "email", mascot.getEmail());
+  template = replacePlaceholders(template, "id", mascot.getId());
+  template = replacePlaceholders(template, "species", mascot.getSpecies());
+  return template;
+};
+const renderBasic = xxx => {
+  let template = fs.readFileSync(path.resolve(templatesDir, "employee.html"), "utf8");
+  template = replacePlaceholders(template, "name", xxx.getName());
+  template = replacePlaceholders(template, "role", xxx.getRole());
+  template = replacePlaceholders(template, "email", xxx.getEmail());
+  template = replacePlaceholders(template, "id", xxx.getId());
   return template;
 };
 

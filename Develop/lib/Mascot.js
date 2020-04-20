@@ -6,8 +6,8 @@ class Mascot extends Employee {
         this.role = "Mascot";
         this.species = species;
     }
-    getSchool(){
-        return this.school
+    getSpecies(){
+        return this.species;
     }
 }
 
